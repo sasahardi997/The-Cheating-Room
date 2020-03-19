@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "655908122572",
+    "firebase_url": "https://the-cheating-room.firebaseio.com",
+    "project_id": "the-cheating-room",
+    "storage_bucket": "the-cheating-room.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655908122572:android:6f19fd564dde52e83cf769",
+        "android_client_info": {
+          "package_name": "com.myappcompany.hardi.thecheatingroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "655908122572-4kak37qokjog0akojbfp7as75r7v57r0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.myappcompany.hardi.thecheatingroom",
+            "certificate_hash": "a36f6824507391e2157305b1247659b88e1c0587"
+          }
+        },
+        {
+          "client_id": "655908122572-pum9qj0k4ov61antfsj7jorkesunfr3o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmaQcYrKx0u4U2rjEnEuoHHMKu3ofi1rA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655908122572-pum9qj0k4ov61antfsj7jorkesunfr3o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
