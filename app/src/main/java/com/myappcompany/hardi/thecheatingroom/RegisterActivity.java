@@ -2,6 +2,7 @@ package com.myappcompany.hardi.thecheatingroom;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private TextInputLayout mDisplayName, mEmail, mPassword;
     private Button mCreateBtn;
+    private Toolbar mToolbar;
 
     FirebaseAuth mAuth;
 
@@ -26,6 +28,11 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        mToolbar = findViewById(R.id.register_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Create Account");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
 
