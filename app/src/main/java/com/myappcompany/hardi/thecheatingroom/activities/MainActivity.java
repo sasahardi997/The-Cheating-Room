@@ -1,22 +1,29 @@
-package com.myappcompany.hardi.thecheatingroom;
+package com.myappcompany.hardi.thecheatingroom.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.myappcompany.hardi.thecheatingroom.R;
+import com.myappcompany.hardi.thecheatingroom.adapter.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
     private Toolbar mToolbar;
+    private ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(R.string.app_name);
+
+        //Tabs
+        mViewPager = findViewById(R.id.tab_pager);
+        mSectionsPagerAdapter = new  SectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        mTabLayout = findViewById(R.id.main_tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override
