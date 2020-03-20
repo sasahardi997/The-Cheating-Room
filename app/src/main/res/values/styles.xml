@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextLabelRegister" parent="TextAppearance.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="android:textSize">16sp</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextLabelLogin" parent="TextAppearance.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="android:textSize">16sp</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

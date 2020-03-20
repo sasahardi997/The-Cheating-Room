@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,6 +26,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button mCreateBtn;
     private Toolbar mToolbar;
 
+    ProgressDialog mRegProgress;
+
     FirebaseAuth mAuth;
 
     @Override
@@ -36,10 +42,11 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mDisplayName = findViewById(R.id.input_name_text);
-        mEmail = findViewById(R.id.input_email_text);
-        mPassword = findViewById(R.id.input_password_text);
+        mDisplayName = findViewById(R.id.input_name_text_register);
+        mEmail = findViewById(R.id.input_email_text_register);
+        mPassword = findViewById(R.id.input_password_text_register);
         mCreateBtn = findViewById(R.id.reg_create_btn);
+        mRegProgress = new ProgressDialog(this);
 
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +55,17 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = mEmail.getEditText().getText().toString();
                 String password = mPassword.getEditText().getText().toString();
                 
-                registerUser(name, email, password);
+                if(isNetworkConnected()){
+                    if(!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
+                        mRegProgress.setTitle("Registering User");
+                        mRegProgress.setMessage("Please wait while we create your account!");
+                        mRegProgress.setCanceledOnTouchOutside(false);
+                        mRegProgress.show();
+                        registerUser(name, email, password);
+                    }
+                } else {
+                    Toast.makeText(RegisterActivity.this, "No Internet connection", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -58,12 +75,18 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    mRegProgress.dismiss();
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     finish();
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
+                    mRegProgress.dismiss();
+                    Toast.makeText(RegisterActivity.this, "Cannot Sign up. Please check the form and try again", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+    public boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 }
