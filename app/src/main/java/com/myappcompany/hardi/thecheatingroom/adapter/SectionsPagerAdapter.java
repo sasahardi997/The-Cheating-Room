@@ -28,7 +28,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 FriendsFragment friendsFragment = new FriendsFragment();
                 return friendsFragment;
-
             default:
                 return null;
         }

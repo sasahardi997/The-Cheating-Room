@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".activities.SettingsActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/setting_image"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/charlie"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"/>
+
+    <TextView
+        android:id="@+id/setting_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/setting_image"
+        android:text="@string/display_name"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/settings_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setting_display_name"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:layout_marginTop="15dp"
+        android:text="@string/hi_there_i_m_using_the_cheating_room_app"/>
+
+    <Button
+        android:id="@+id/change_image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_image"
+        android:layout_above="@id/change_status_btn"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/change_status_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_status"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"/>
+
+</RelativeLayout>

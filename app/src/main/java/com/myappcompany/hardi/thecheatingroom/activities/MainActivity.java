@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 mAuth.signOut();
                 sentToStartActivity();
                 break;
+            case R.id.main_setting_btn:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         }
         return true;
     }
