@@ -19,4 +19,6 @@
     <string name="hi_there_i_m_using_the_cheating_room_app">Hi there, I\'m using The Cheating Room App</string>
     <string name="change_image">change image</string>
     <string name="change_status">change status</string>
+    <string name="your_status">Your Status</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

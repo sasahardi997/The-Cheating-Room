@@ -35,7 +35,7 @@
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
         android:textSize="15sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:text="@string/hi_there_i_m_using_the_cheating_room_app"/>
 
     <Button
@@ -45,10 +45,11 @@
         android:text="@string/change_image"
         android:layout_above="@id/change_status_btn"
         android:layout_centerHorizontal="true"
+
+        android:background="@android:color/white"
+        android:textColor="@color/colorPrimary"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        android:background="@color/colorAccent"
-        android:textColor="@android:color/white"
         android:layout_marginTop="50dp"/>
 
     <Button
@@ -58,8 +59,8 @@
         android:text="@string/change_status"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/white"
-        android:textColor="@color/colorPrimary"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:layout_marginTop="20dp"
