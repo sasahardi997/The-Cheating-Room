@@ -69,6 +69,7 @@ public class StatusActivity extends AppCompatActivity {
                            mProgress.dismiss();
                            Toast.makeText(StatusActivity.this, "Status updated Successfully!", Toast.LENGTH_SHORT).show();
                            startActivity(new Intent(StatusActivity.this, SettingsActivity.class));
+                           finish();
                        } else {
                            mProgress.dismiss();
                            Toast.makeText(StatusActivity.this, task.toString(), Toast.LENGTH_SHORT).show();

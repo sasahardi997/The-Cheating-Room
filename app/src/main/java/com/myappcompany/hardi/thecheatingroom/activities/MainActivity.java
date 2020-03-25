@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.main_setting_btn:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                break;
+            case R.id.main_all_users:
+                startActivity(new Intent(MainActivity.this, UsersActivity.class));
+                break;
         }
         return true;
     }
