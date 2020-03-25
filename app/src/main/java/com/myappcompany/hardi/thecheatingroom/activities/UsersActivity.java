@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.myappcompany.hardi.thecheatingroom.R;
 import com.myappcompany.hardi.thecheatingroom.model.Users;
+import com.squareup.picasso.Picasso;
 
 public class UsersActivity extends AppCompatActivity {
 
@@ -62,9 +65,21 @@ public class UsersActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull UsersViewHolder usersViewHolder, int i, @NonNull Users users) {
+            protected void onBindViewHolder(@NonNull UsersViewHolder usersViewHolder, int position, @NonNull Users users) {
                 usersViewHolder.setName(users.getName());
                 usersViewHolder.setStatus(users.getStatus());
+                usersViewHolder.setImage(users.getThumb_image());
+
+                final String user_id = getRef(position).getKey();
+
+                usersViewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(UsersActivity.this, ProfileActivity.class);
+                        intent.putExtra("user_id", user_id);
+                        startActivity(intent);
+                    }
+                });
             }
         };
         adapter.startListening();
@@ -77,7 +92,6 @@ public class UsersActivity extends AppCompatActivity {
 
         public UsersViewHolder(@NonNull View itemView) {
             super(itemView);
-
             mView = itemView;
         }
 
@@ -89,6 +103,11 @@ public class UsersActivity extends AppCompatActivity {
         public void setStatus(String status){
             TextView userStatusView = mView.findViewById(R.id.user_single_status);
             userStatusView.setText(status);
+        }
+
+        public void setImage(String thumbImage){
+            CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
+            Picasso.get().load(thumbImage).placeholder(R.drawable.avatar).into(userImageView);
         }
     }
 }
