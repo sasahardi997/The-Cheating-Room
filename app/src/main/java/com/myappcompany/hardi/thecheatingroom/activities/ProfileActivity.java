@@ -90,8 +90,26 @@ public class ProfileActivity extends AppCompatActivity {
                                 mCurrentState = "req_sent";
                                 mProfileSendReqBtn.setText("Cancel Friend Request");
                             }
+                            mProgressDialog.dismiss();
+                        } else {
+                            mFriendDatabase.child(mCurrentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.hasChild(user_id)){
+                                        mCurrentState = "friends";
+                                        mProfileSendReqBtn.setText("UnFriend " + displayName);
+                                        mProfileSendReqBtn.setBackgroundColor(getResources().getColor(R.color.white));
+                                        mProfileSendReqBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
+                                    }
+                                    mProgressDialog.dismiss();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    mProgressDialog.dismiss();
+                                }
+                            });
                         }
-                        mProgressDialog.dismiss();
                     }
 
                     @Override
