@@ -35,6 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Button mProfileSendReqBtn, mDeclineBtn;
     private ProgressDialog mProgressDialog;
     private String displayName;
+    private String user_id;
 
     private String mCurrentState;
 
@@ -48,7 +49,11 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        final String user_id = getIntent().getStringExtra("user_id");
+        if(getIntent().getStringExtra("user_id") != null){
+            user_id = getIntent().getStringExtra("user_id");
+        } else {
+            user_id = getIntent().getStringExtra("from_user_id");
+        }
 
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
         mFriendRequestDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_req");
