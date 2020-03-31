@@ -19,23 +19,39 @@ exports.sendNotification = functions.database.ref('/notifications/{user_id}/{not
    //  return console.log('A Notification has been deleted from the database: ',notification_id);
    // }
 
+   const fromUser = admin.database().ref(`/notifications/${user_id}/${notification_id}`).once('value');
+   return fromUser.then(fromUserResult => {
+      const from_user_id = fromUserResult.val().from;
+      console.log('You have new notification from : ', from_user_id);
 
-   const deviceToken = admin.database().ref('/Users/'+ user_id +'/device_token').once('value');
-   return deviceToken.then(result => {
+      const userQuery = admin.database().ref(`Users/${from_user_id}/name`).once('value');
+            return userQuery.then(userResult =>{
+      const userName = userResult.val();
+
+      const deviceToken = admin.database().ref('/Users/'+ user_id +'/device_token').once('value');
+          return deviceToken.then(result => {
 
     const token_id = result.val();
 
     const payload = {
      notification: {
       title: "Friend Request",
-      body: "You've received a new Friend Request",
-      icon: "default"
+      body: `${userName} has sent you friend request`,
+      icon: "avatar.png",
+      click_action : "com.myappcompany.hardi.thecheatingroom_TARGET_NOTIFICATION"
+     },
+     data:{
+     	from_user_id : from_user_id
      }
     };
 
     return admin.messaging().sendToDevice(token_id,payload).then(response => {
      return console.log('This was the notification feature');
     });
+   });
+
+      });
+
    });
 
 });
