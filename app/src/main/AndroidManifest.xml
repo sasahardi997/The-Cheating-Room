@@ -16,7 +16,8 @@
         android:name=".TheCheatingRoom"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activities.ProfileActivity">
+        <activity android:name=".activities.ProfileActivity"
+            android:parentActivityName=".activities.UsersActivity">
             <intent-filter>
                 <action android:name="com.myappcompany.hardi.thecheatingroom_TARGET_NOTIFICATION"/>
                 <category android:name="android.intent.category.DEFAULT"/>
