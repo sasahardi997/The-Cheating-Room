@@ -119,13 +119,12 @@ public class ProfileActivity extends AppCompatActivity {
                                                 if(databaseError == null) {
                                                     mCurrentState = "not friends";
                                                     mProfileSendReqBtn.setText("Send Friend Request");
-
                                                 }else{
                                                     String error = databaseError.getMessage();
                                                     Toast.makeText(ProfileActivity.this, error, Toast.LENGTH_LONG).show();
                                                 }
-
                                                 mProfileSendReqBtn.setEnabled(true);
+                                                mDeclineBtn.setVisibility(View.INVISIBLE);
                                             }
                                         });
 
