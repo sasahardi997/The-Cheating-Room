@@ -47,6 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference mNotificationDatabase;
     private DatabaseReference mRootRef;
     private FirebaseUser mCurrentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

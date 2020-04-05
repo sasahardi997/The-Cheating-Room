@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -17,39 +17,49 @@
             android:layout_height="wrap_content"
             android:padding="4dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_single_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginBottom="3dp"
-            android:src="@drawable/avatar"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_single_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="3dp"
+                android:src="@drawable/avatar"/>
 
-        <TextView
-            android:id="@+id/user_single_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Aleksandar Hardi"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_toEndOf="@id/user_single_image"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="15dp"/>
+            <TextView
+                android:id="@+id/user_single_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aleksandar Hardi"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_toEndOf="@id/user_single_image"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="15dp"/>
 
-        <TextView
-            android:id="@+id/user_single_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Android Freelancer"
-            android:textColor="@android:color/black"
-            android:textStyle="italic"
-            android:textSize="15sp"
-            android:layout_toEndOf="@id/user_single_image"
-            android:layout_below="@id/user_single_name"
-            android:layout_marginTop="3dp"
-            android:layout_marginStart="15dp"/>
+            <TextView
+                android:id="@+id/user_single_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Android Freelancer"
+                android:textColor="@android:color/black"
+                android:textStyle="italic"
+                android:textSize="15sp"
+                android:layout_toEndOf="@id/user_single_image"
+                android:layout_below="@id/user_single_name"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="15dp"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_single_online_icon"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_toEndOf="@id/user_single_name"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="11dp"
+                android:visibility="invisible"
+                android:src="@drawable/onlineicon"/>
 
         </RelativeLayout>
 
