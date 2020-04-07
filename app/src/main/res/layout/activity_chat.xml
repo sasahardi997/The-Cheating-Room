@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#cccccc"
+    android:background="#DFDEDE"
     tools:context=".activities.ChatActivity">
 
     <include layout="@layout/app_bar_layout"
@@ -14,33 +14,36 @@
     <LinearLayout
         android:id="@+id/type_message_linear"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="10"
+        android:gravity="center"
         android:background="@color/white">
         
         <ImageView
-            android:id="@+id/image_button_5"
+            android:id="@+id/chat_add_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="10dp"
             android:layout_weight="0.5"
             android:src="@drawable/ic_add"/>
 
-        <TextView
-            android:id="@+id/send_message_type"
+        <EditText
+            android:id="@+id/chat_message_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:hint="Type a message..."
+            android:backgroundTint="@android:color/transparent"
             android:gravity="left|center"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:paddingLeft="5dp"
             android:layout_weight="9"/>
 
         <ImageView
-            android:id="@+id/send_message_button"
+            android:id="@+id/chat_send_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="10dp"
             android:layout_weight="0.5"
             android:src="@drawable/ic_send"/>
