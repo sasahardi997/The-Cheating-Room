@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.myappcompany.hardi.thecheatingroom.R;
 import com.myappcompany.hardi.thecheatingroom.adapter.SectionsPagerAdapter;
 
@@ -34,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
-        mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+        if (mAuth.getCurrentUser() != null) {
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+        }
 
         mToolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
@@ -57,15 +60,17 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser == null){
             sentToStartActivity();
         } else {
-            mUserRef.child("online").setValue(true);
+            mUserRef.child("online").setValue("true");
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
-        mUserRef.child("online").setValue(false);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
+        }
     }
 
     @Override

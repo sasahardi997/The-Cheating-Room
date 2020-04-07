@@ -1,5 +1,7 @@
 package com.myappcompany.hardi.thecheatingroom.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -24,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.myappcompany.hardi.thecheatingroom.R;
+import com.myappcompany.hardi.thecheatingroom.activities.ChatActivity;
 import com.myappcompany.hardi.thecheatingroom.activities.ProfileActivity;
 import com.myappcompany.hardi.thecheatingroom.activities.UsersActivity;
 import com.myappcompany.hardi.thecheatingroom.model.Friends;
@@ -80,17 +83,17 @@ public class FriendsFragment extends Fragment {
                 new FirebaseRecyclerAdapter<Friends, FriendsViewHolder>(friendsFirebaseRecyclerOptions) {
                     @Override
                     protected void onBindViewHolder(@NonNull final FriendsViewHolder holder, int position, @NonNull Friends model) {
-                        String list_user_id = getRef(position).getKey();
+                        final String list_user_id = getRef(position).getKey();
 
                         mUsersDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                String username = dataSnapshot.child("name").getValue().toString();
+                                final String username = dataSnapshot.child("name").getValue().toString();
                                 String status = dataSnapshot.child("status").getValue().toString();
                                 String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 
                                 if(dataSnapshot.hasChild("online")){
-                                    Boolean userOnline = (boolean) dataSnapshot.child("online").getValue();
+                                    String userOnline = dataSnapshot.child("online").getValue().toString();
                                     holder.setUserOnline(userOnline);
                                 }
 
@@ -100,6 +103,34 @@ public class FriendsFragment extends Fragment {
                                 if (!thumb_image.equals("default")) {
                                     Picasso.get().load(thumb_image).placeholder(R.drawable.avatar).into(holder.iv_usersSingle_image);
                                 }
+
+                                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        CharSequence options[] = new CharSequence[]{"Open Profile", "Send message"};
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                        builder.setTitle("Select Options");
+                                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int i) {
+                                                //Click Event for each item
+                                                if(i == 0){
+                                                    Intent intent = new Intent(getContext(), ProfileActivity.class);
+                                                    intent.putExtra("user_id", list_user_id);
+                                                    startActivity(intent);
+                                                }
+
+                                                if(i == 1){
+                                                    Intent intent = new Intent(getContext(), ChatActivity.class);
+                                                    intent.putExtra("user_id", list_user_id);
+                                                    intent.putExtra("user_name", username);
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        });
+                                        builder.show();
+                                    }
+                                });
                             }
 
                             @Override
@@ -134,9 +165,9 @@ public class FriendsFragment extends Fragment {
             iv_usersSingle_image = itemView.findViewById(R.id.user_single_image);
         }
 
-        public void setUserOnline(boolean online_status){
+        public void setUserOnline(String online_status){
             ImageView userOnlineView = itemView.findViewById(R.id.user_single_online_icon);
-            if(online_status == true){
+            if(online_status.equals("true")){
                 userOnlineView.setVisibility(View.VISIBLE);
             } else {
                 userOnlineView.setVisibility(View.INVISIBLE);
