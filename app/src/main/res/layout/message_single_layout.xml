@@ -41,6 +41,14 @@
         android:textSize="14sp"
         android:layout_below="@id/name_text_layout"/>
 
+    <ImageView
+        android:id="@+id/message_image_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/message_text_layout"
+        android:layout_below="@id/message_text_layout"
+        android:layout_toEndOf="@id/message_profile_layout"/>
+
 
     <!--
     <de.hdodenhof.circleimageview.CircleImageView
